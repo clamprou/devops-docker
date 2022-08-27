@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <body style="background-color:rgb(113, 180, 219);">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static '/users/style.css' %}">
+</head>
+  
+{% block content %} 
+<div class = "container">  
+  <h1>Make Apply</h1>  
+  <form method="post">  
+    {% csrf_token %}
+    {{students}}
+      {% for field in form %}  
+      <p>  
+        {{ field.label_tag }}<br>  
+        {{ field }}  
+        {% if field.help_text %}  
+          <small style="display: none ">{{ field.help_text }}</small>  
+        {% endif %} 
+          
+        {% for error in field.errors %}  
+          <p style="color: red">{{ error }}</p>  
+        {% endfor %}  
+      </p>  
+      {% endfor %}  
+    <button type="submit">Make Apply</button>  
+  </form>  
+</div>  
+{% endblock %}  

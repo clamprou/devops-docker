@@ -1,0 +1,31 @@
+<!--users/templates/users/dashboard.html-->
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <body style="background-color:rgb(113, 180, 219);">
+<h1>Welcome to Awesome Website</h1>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static '/users/style.css' %}">
+</head>
+
+{% block content %}
+<h2>Hello, {{ user.username|default:'Guest' }}!</h2>
+
+<div>
+    {% if user.is_authenticated %}
+        {% if user.is_student %}
+        <br><a href="{% url 'apply' %}">See Apply</a>
+        {% endif %}
+        {% if user.is_secretary %}
+        <br><a href="{% url 'makeApply' %}">Approve Applies</a>
+        {% endif %}
+        <br><a href="{% url 'logout' %}">Logout</a>
+        <br><a href="{% url 'password_change' %}">Change password</a>
+    {% else %}
+        <br><a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</div>
+{% endblock %}

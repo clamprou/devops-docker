@@ -1,0 +1,10 @@
+{% autoescape off %}  
+{% if apply.status == "1" %}
+  Hi {{ user.username }},  
+  Your apply has been aprroved
+{% endif %}
+{% if apply.status == "2" %}
+  Hi {{ user.username }},  
+  Your apply has been dissaproved
+{% endif %}
+{% endautoescape %} 

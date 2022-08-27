@@ -1,0 +1,17 @@
+[
+    {
+            "model": "courses.Course",
+            "pk": 1,
+            "fields": {
+                    "name": "Programming"
+            }
+    },
+    {
+        "model": "courses.Course",
+        "pk": 2,
+        "fields": {
+                "name": "Something"
+        }
+    }   
+    
+]

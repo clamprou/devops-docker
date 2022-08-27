@@ -1,0 +1,15 @@
+[
+    {
+        "model": "users.MyUser",
+        "pk": 1,
+        "fields": {
+                "password": "pbkdf2_sha256$180000$jspFOqq1G0Uj$WYR2sUVZW07WLxRBw8wdxVWq0+e2uShlRMrOdG4cAFo=",
+                "username": "chris",
+                "email": "chrisotelios@gmail.com",
+                "is_secretary": true,
+                "is_superuser": true,
+                "is_staff": true
+        }
+    }
+
+]

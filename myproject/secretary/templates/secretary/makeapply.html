@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <body style="background-color:rgb(113, 180, 219);">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static '/users/style.css' %}">
+</head>
+{% block content %}
+
+<div class = "container">  
+  <h1>Make Apply</h1> 
+  <form method="post">
+    {% csrf_token %}
+      {% for field in form %}  
+      <h3>
+        {{ field.label_tag }}<br>  
+        {{ field }}
+        {% if field.help_text %}  
+          <small style="display: none ">{{ field.help_text }}</small>  
+        {% endif %} 
+          
+         
+      </h3> 
+      {% endfor %}  
+    <button type="submit">Make Apply</button>  
+  </form>
+  <br>
+  <table id="myTable">
+    <tr>
+      <th>Id</th>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Studies</th>
+      <th>Age</th>
+      <th>Degree</th>
+      <th>Course</th>
+    </tr>
+    <tr>
+      
+    </tr>
+  </table>
+
+<script>
+  var students = 0
+  var i = 0
+  var j = 0
+  var atr = []
+</script>
+{% for user in users %}
+  {% for a in user %}
+    <script>
+      atr[i] = "{{a}}"
+      i += 1
+    </script>
+  {% endfor %}
+  <script>
+    students++
+    console.log(atr)
+    console.log(students)
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(students+1);
+    var id = row.insertCell(0);
+    var email = row.insertCell(1);
+    var first_name = row.insertCell(2);
+    var last_name = row.insertCell(3);
+    var studies = row.insertCell(4);
+    var age = row.insertCell(5);
+    var degree = row.insertCell(6);
+    var course = row.insertCell(7);
+    id.innerHTML = atr[0];
+    email.innerHTML = atr[1];
+    first_name.innerHTML = atr[2];
+    last_name.innerHTML = atr[3];
+    studies.innerHTML = atr[4];
+    age.innerHTML = atr[5];
+    degree.innerHTML = atr[6];
+    course.innerHTML = atr[7];
+    i = 0
+  </script>
+{% endfor %}
+  {% if message %}
+    <script>
+    alert("Apply Saved")
+    location.reload();
+    </script>
+  {% endif %}
+  <br><a href="{% url 'dashboard' %}">Back to dashboard</a>   
+</div>  
+{% endblock %}  
