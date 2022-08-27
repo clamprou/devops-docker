@@ -6,7 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/clamprou/devops1.git'
+                git branch: 'main', url: 'https://github.com/clamprou/devops-docker.git'
 
                 
             }
@@ -36,22 +36,22 @@ pipeline {
                 '''
             }
         }
-        stage('Prepare DB') {            
-            steps {
-                sshagent (credentials: ['ssh-app01-1']) {
-                    sh '''
-                        pwd
-                        echo $WORKSPACE
-                        ansible-playbook -i ~/workspace/ansible-pipeline/hosts.yml -l database ~/workspace/ansible-pipeline/playbooks/postgres.yml
-                        '''
-            }
-            }
-        }
+        // stage('Prepare DB') {            
+        //     steps {
+        //         sshagent (credentials: ['ssh-app01-1']) {
+        //             sh '''
+        //                 pwd
+        //                 echo $WORKSPACE
+        //                 ansible-playbook -i ~/workspace/ansible-pipeline/hosts.yml -l database ~/workspace/ansible-pipeline/playbooks/postgres.yml
+        //                 '''
+        //     }
+        //     }
+        // }
         stage('deploym to vm 1') {
             steps{
                 sshagent (credentials: ['ssh-app01-1']) {
                     sh '''
-                        ansible-playbook -i ~/workspace/ansible-pipeline/hosts.yml -l webserver ~/workspace/ansible-pipeline/playbooks/django-project-install.yml
+                        ansible-playbook -i ~/workspace/ansible-pipeline/hosts.yml -l webserver ~/workspace/ansible-pipeline/playbooks/docker-install.yml
                     '''
                 }
 
