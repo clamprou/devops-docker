@@ -6,7 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/clamprou/devops-docker.git'
+                git branch: 'master', url: 'https://github.com/clamprou/devops-docker.git'
 
                 
             }
