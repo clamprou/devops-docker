@@ -47,7 +47,7 @@ pipeline {
         //     }
         //     }
         // }
-        stage('deploym to vm 1') {
+        stage('install docker to vm 1') {
             steps{
                 sshagent (credentials: ['ssh-app01-1']) {
                     sh '''
@@ -58,16 +58,18 @@ pipeline {
             }
 
         }
-        // stage('loaddata') {
-        //     steps{
-        //         sshagent (credentials: ['ssh-app01-1']) {
-        //             sh '''
-        //                 ansible-playbook -i ~/workspace/ansible-pipeline/hosts.yml -l webserver ~/workspace/ansible-pipeline/playbooks/loaddata.yml
-        //             '''
-        //         }
+        
+        stage('deploym to vm 1') {
+            steps{
+                sshagent (credentials: ['ssh-app01-1']) {
+                    sh '''
+                        ansible-playbook -i ~/workspace/ansible-pipeline/hosts.yml -l webserver ~/workspace/ansible-pipeline/playbooks/docker-build
+                    '''
+                }
 
-        //     }
+            }
 
-        // }
+        }
+        
     }
 }
