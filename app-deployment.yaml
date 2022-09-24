@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
  name: app-deployment
  labels:
-   app: app
+   app: myapp
 spec:
  replicas: 3
  selector:
    matchLabels:
-     app: app
+     app: myapp
  template:
    metadata:
      labels:
-       app: app
+       app: myapp
    spec:
      containers:
-     - name: app
+     - name: myapp
        image: docker.io/christoslab/devops-docker_django:latest
        ports:
-       - containerPort: 8080
+       - containerPort: 8000
