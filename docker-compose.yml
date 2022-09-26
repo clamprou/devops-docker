@@ -28,6 +28,9 @@ services:
      - ./myproject/myproject/.env
     ports:
       - "8000:8000"
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=pass123
     volumes:
       - static_volume:/app/static
     depends_on:
