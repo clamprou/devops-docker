@@ -29,6 +29,7 @@ services:
     ports:
       - "8000:8000"
     environment:
+      - POSTGRES_NAME=postgres
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=pass123
     volumes:
