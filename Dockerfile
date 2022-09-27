@@ -6,6 +6,7 @@ WORKDIR /app
 
 # COPY requirements.txt
 COPY ./requirements.txt ./
+COPY ./initial_data.json ./
 
 RUN pip install -r requirements.txt
 # Copy main.py file
